@@ -2,8 +2,8 @@
   <PropertyGroup>
     <!--Work around so the conditions work below-->
     <TargetFrameworks></TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid60;MonoAndroid70;MonoAndroid71;MonoAndroid80;MonoAndroid81;MonoAndroid90;uap10.0.16299</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid60;MonoAndroid70;MonoAndroid71;MonoAndroid80;MonoAndroid81;MonoAndroid90;</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;xamarin.mac20;MonoAndroid60;MonoAndroid70;MonoAndroid71;MonoAndroid80;MonoAndroid81;MonoAndroid90;uap10.0.16299</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;xamarin.mac20;MonoAndroid60;MonoAndroid70;MonoAndroid71;MonoAndroid80;MonoAndroid81;MonoAndroid90;</TargetFrameworks>
     <AssemblyName>Xamarin.Essentials</AssemblyName>
     <RootNamespace>Xamarin.Essentials</RootNamespace>
     <PackageId>Xamarin.Essentials</PackageId>
@@ -87,6 +87,24 @@
     <PackageReference Include="Xamarin.Android.Support.Compat" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.CustomTabs" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.Core.Utils" Version="28.0.0.1" />
+  </ItemGroup>
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('xamarin.mac')) ">
+    <Compile Include="**\*.mac.cs" />
+    <Compile Include="**\*.mac.*.cs" />
+    <Compile Include=".\Connectivity\Connectivity.ios.cs" />
+    <Compile Include=".\Connectivity\Connectivity.ios.reachability.cs" />
+    <Compile Include=".\Geocoding\Geocoding.ios.cs" />
+    <Compile Include=".\Geolocation\Geolocation.ios.cs" />
+    <Compile Include=".\Geolocation\GeolocationRequest.ios.cs" />
+    <Compile Include=".\MainThread\MainThread.ios.cs" />
+    <Compile Include=".\Map\Map.ios.cs" />
+    <Compile Include=".\Preferences\Preferences.ios.cs" />
+    <Compile Include=".\SecureStorage\SecureStorage.ios.cs" />
+    <Compile Include=".\Types\LocationExtensions.ios.cs" />
+    <Compile Include=".\Types\PlacemarkExtensions.ios.cs" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+    <Reference Include="OpenTK" />
   </ItemGroup>
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
     <Compile Include="**\*.ios.cs" />
